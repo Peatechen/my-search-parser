@@ -1,0 +1,18 @@
+{
+  "env": {
+    "jest/globals": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "standard",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier/standard",
+    "prettier/@typescript-eslint"
+  ],
+  "plugins": ["jest", "simple-import-sort"],
+  "rules": {
+    "simple-import-sort/sort": "error"
+  }
+}
