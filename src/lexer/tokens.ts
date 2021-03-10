@@ -23,7 +23,7 @@ export const Integer = createToken({
   pattern: /\d+/,
   longer_alt: Float,
 });
-export const String = createToken({ name: "String", pattern: /'.*?'/ });
+export const String = createToken({ name: "String", pattern: /".*?"/ });
 export const True = createToken({
   name: "True",
   pattern: /true/,

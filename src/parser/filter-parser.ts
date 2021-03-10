@@ -142,6 +142,11 @@ class FilterParser extends CstParser {
       $.OR([
         {
           ALT: () => {
+            $.CONSUME(Identifier);
+          },
+        },
+        {
+          ALT: () => {
             $.CONSUME(Integer);
           },
         },

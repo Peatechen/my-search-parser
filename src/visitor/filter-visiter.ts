@@ -27,6 +27,14 @@ class FilterVisitor extends BaseCstVisitor {
   }
 
   atomicExp(ctx) {
+    if ("Identifier" in ctx) {
+      return ctx.Identifier[0].image;
+    }
+
+    if ("String" in ctx) {
+      return ctx.String[0].image.slice(1, ctx.String[0].image.length - 1);
+    }
+
     if ("Integer" in ctx) {
       return Number(ctx.Integer[0].image);
     }
@@ -46,8 +54,6 @@ class FilterVisitor extends BaseCstVisitor {
     if ("False" in ctx) {
       return false;
     }
-
-    return ctx.String[0].image.slice(1, ctx.String[0].image.length - 1);
   }
 
   dateExp(ctx) {
@@ -66,10 +72,21 @@ class FilterVisitor extends BaseCstVisitor {
     if (ctx.LtOp) cmpOp = "LT";
     if (ctx.LteOp) cmpOp = "LTE";
 
+    const value = this.visit(ctx.atomicExp);
+
+    if ("String" in ctx.atomicExp[0].children) {
+      return {
+        type: cmpOp,
+        filed: ctx.Identifier[0].image,
+        value: value,
+        phrase: true,
+      };
+    }
+
     return {
       type: cmpOp,
       filed: ctx.Identifier[0].image,
-      value: this.visit(ctx.atomicExp),
+      value: value,
     };
   }
 

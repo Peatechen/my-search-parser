@@ -47,14 +47,14 @@ test("GT", () => {
 });
 
 test("AND", () => {
-  expect(toAst("name:'John Wick' AND enable:true")).toMatchObject({
+  expect(toAst("name:1 AND enable:true")).toMatchObject({
     filter: {
       type: "AND",
       nodes: [
         {
           type: "EQ",
           filed: "name",
-          value: "John Wick",
+          value: 1,
         },
         {
           type: "EQ",
@@ -67,7 +67,7 @@ test("AND", () => {
 });
 
 test("OR", () => {
-  expect(toAst("name:'John' OR enable:true")).toMatchObject({
+  expect(toAst("name:John OR enable:true")).toMatchObject({
     filter: {
       type: "OR",
       nodes: [
@@ -89,7 +89,7 @@ test("OR", () => {
 test("Subquery", () => {
   expect(
     toAst(
-      "name:'John' OR (created_at:>='2020-01-01 00:00:00' AND created_at:<='2020-12-31 23:59:59')"
+      'name:John OR (created_at:>="2020-01-01 00:00:00" AND created_at:<="2020-12-31 23:59:59")'
     )
   ).toMatchObject({
     filter: {
@@ -157,6 +157,28 @@ test("Priority", () => {
               ],
             },
           ],
+        },
+      ],
+    },
+  });
+});
+
+// 测试查询短句
+test("Phrase", () => {
+  expect(toAst('name:"John" OR enable:true')).toMatchObject({
+    filter: {
+      type: "OR",
+      nodes: [
+        {
+          type: "EQ",
+          filed: "name",
+          value: "John",
+          phrase: true,
+        },
+        {
+          type: "EQ",
+          filed: "enable",
+          value: true,
         },
       ],
     },
