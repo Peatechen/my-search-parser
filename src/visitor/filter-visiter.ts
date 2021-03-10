@@ -84,12 +84,12 @@ class FilterVisitor extends BaseCstVisitor {
     // 找到左边第一个表达式
     const leftHandSide = this.visit(ctx.lhs);
 
-    // 找到所有 And、Or 令牌并排序
-    let opTokens = [];
-    ctx.AndOp && opTokens.push(...ctx.AndOp);
+    // 找到所有 And、Or
+    const opTokens = [];
     ctx.OrOp && opTokens.push(...ctx.OrOp);
+    ctx.AndOp && opTokens.push(...ctx.AndOp);
 
-    opTokens = opTokens.sort((a, b) => a.startOffset - b.startOffset);
+    // opTokens = opTokens.sort((a, b) => a.startOffset - b.startOffset);
 
     // 找到所有右边的表达式
     const rightHandSide = [];
@@ -107,12 +107,12 @@ class FilterVisitor extends BaseCstVisitor {
     if (rightHandSide.length === 1) return rightHandSide.pop();
 
     // 获取最左边的第一个表达式，
-    let prev = rightHandSide.shift();
+    let prev = rightHandSide.pop();
 
     opTokens.forEach((_) => {
       prev = {
         type: _.image,
-        nodes: [prev, rightHandSide.shift()],
+        nodes: [rightHandSide.pop(), prev],
       };
     });
 

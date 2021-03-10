@@ -122,3 +122,43 @@ test("Subquery", () => {
     },
   });
 });
+
+test("Priority", () => {
+  expect(toAst("a:0 OR b:0 AND c:0 AND d:0")).toMatchObject({
+    filter: {
+      type: "AND",
+      nodes: [
+        {
+          type: "EQ",
+          filed: "a",
+          value: 0,
+        },
+        {
+          type: "AND",
+          nodes: [
+            {
+              type: "EQ",
+              filed: "b",
+              value: 0,
+            },
+            {
+              type: "OR",
+              nodes: [
+                {
+                  type: "EQ",
+                  filed: "c",
+                  value: 0,
+                },
+                {
+                  type: "EQ",
+                  filed: "d",
+                  value: 0,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  });
+});

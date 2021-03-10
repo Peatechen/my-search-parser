@@ -37,5 +37,3 @@ export function toAst(inputText: string): any {
   const ast = filterVisitor.visit(cst);
   return ast;
 }
-
-toAst("NOT a:'b'");
