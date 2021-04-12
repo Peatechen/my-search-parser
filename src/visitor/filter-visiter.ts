@@ -66,7 +66,7 @@ class FilterVisitor extends BaseCstVisitor {
     let cmpOp = "";
 
     if (ctx.EqOp) cmpOp = "EQ";
-    if (ctx.NotEqOp) cmpOp = "NE";
+    if (ctx.NotEqOp) cmpOp = "NEQ";
     if (ctx.GtOp) cmpOp = "GT";
     if (ctx.GteOp) cmpOp = "GET";
     if (ctx.LtOp) cmpOp = "LT";

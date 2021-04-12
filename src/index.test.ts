@@ -7,9 +7,22 @@ test("Empty query", () => {
 });
 
 test("Is not null", () => {
-  expect(toAst("field!:NULL")).toMatchObject({
+  expect(toAst("NOT field:NULL")).toMatchObject({
     filter: {
-      type: "NE",
+      type: "NOT",
+      node: {
+        type: "EQ",
+        filed: "field",
+        value: null,
+      },
+    },
+  });
+});
+
+test("Not equal null", () => {
+  expect(toAst("field !: NULL")).toMatchObject({
+    filter: {
+      type: "NEQ",
       filed: "field",
       value: null,
     },
