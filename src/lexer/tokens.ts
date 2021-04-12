@@ -46,12 +46,6 @@ export const EqOp = createToken({
   longer_alt: Identifier,
 });
 
-export const NotEqOp = createToken({
-  name: "NotEqOp",
-  pattern: /!:/,
-  longer_alt: Identifier,
-});
-
 export const LtOp = createToken({
   name: "LtOp",
   pattern: /:</,
@@ -147,7 +141,6 @@ export const allTokens = [
   GtOp,
   LteOp,
   LtOp,
-  NotEqOp,
   EqOp,
   LParen,
   RParen,

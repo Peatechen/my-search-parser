@@ -15,7 +15,6 @@ import {
   LteOp,
   LtOp,
   Not,
-  NotEqOp,
   Null,
   OrOp,
   RParen,
@@ -107,11 +106,6 @@ class FilterParser extends CstParser {
         {
           ALT: () => {
             $.CONSUME(EqOp);
-          },
-        },
-        {
-          ALT: () => {
-            $.CONSUME(NotEqOp);
           },
         },
         {

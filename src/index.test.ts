@@ -19,16 +19,6 @@ test("Is not null", () => {
   });
 });
 
-test("Not equal null", () => {
-  expect(toAst("field !: NULL")).toMatchObject({
-    filter: {
-      type: "NEQ",
-      filed: "field",
-      value: null,
-    },
-  });
-});
-
 test("Removes leading and trailing whitespace", () => {
   expect(toAst("field:1 ")).toMatchObject({
     filter: {
