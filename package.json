@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@endemolshinegroup/cz-github": "^2.0.0",
     "assert": "^2.0.0",
     "chevrotain": "^8.0.1"
   },
@@ -75,7 +76,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "@endemolshinegroup/cz-github"
     }
   }
 }
