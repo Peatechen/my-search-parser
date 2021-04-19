@@ -15,7 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@endemolshinegroup/cz-github": "^2.0.0",
     "assert": "^2.0.0",
     "chevrotain": "^8.0.1"
   },
@@ -53,12 +52,10 @@
   },
   "lint-staged": {
     "*.{json,js,jsx,ts,tsx,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "git add"
+      "eslint --fix"
     ]
   },
   "jest": {
@@ -76,7 +73,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/@endemolshinegroup/cz-github"
+      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }
