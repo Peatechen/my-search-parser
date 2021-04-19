@@ -76,7 +76,7 @@
   },
   "config": {
     "commitizen": {
-      "path": "@endemolshinegroup/cz-github"
+      "path": "./node_modules/@endemolshinegroup/cz-github"
     }
   }
 }
